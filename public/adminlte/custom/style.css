@@ -1,0 +1,40 @@
+form label {
+    margin-bottom: 0;
+}
+
+table > thead > tr > th {
+    text-transform: uppercase;
+}
+table > thead {
+    background: #68a5f1;
+    color: #ffffff;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal { overflow: auto !important; }
+
+.bright-gray {
+    filter: brightness(1.75) grayscale(100%);
+}
+
+.small-box>.small-box-footer {
+    background-color: #f4f4f4;
+}
+
+#nprogress {
+    .bar {
+        z-index: 2000 !important;
+    }
+
+    .spinner {
+        z-index: 2000 !important;        
+    }
+}
