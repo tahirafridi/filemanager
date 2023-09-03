@@ -47,7 +47,7 @@
                                     <p>Total Downloads</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fas fa-download"></i>
+                                    <i class="fas fa-cloud-download-alt"></i>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                     <p>Total Storage Used</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fas fa-storage"></i>
+                                    <i class="fas fa-hdd"></i>
                                 </div>
                             </div>
                         </div>
