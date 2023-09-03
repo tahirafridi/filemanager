@@ -19,8 +19,7 @@ class Login extends Component
     public function mount()
     {
         if (auth()->user()) {
-            $route = auth()->user()->role === 'Admin' ? route('admin.index') : route('user.index');
-            return $this->redirect(session()->pull('url.intended', $route), navigate: false);
+            return $this->redirect(session()->pull('url.intended', route('admin.index')), navigate: false);
         }
     }
 
