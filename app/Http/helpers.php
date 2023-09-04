@@ -1,29 +1,7 @@
 <?php
 
-use App\Models\Scraper;
 use App\Models\Setting;
-use App\Models\LogModel;
-use App\Models\AppUpdate;
-
-function sweetAlert($object, $type, $message, $nature="alert")
-{
-    // documentation: https://livewire-alert.jantinnerezo.com
-    // $nature can be 'alert' or 'flash'
-    // $type can be 'success','info','warning' or 'danger'
-
-    $object->{$nature}($type, "", [
-        'text' =>  $message,
-        'toast' => false,
-        'position' => 'center',
-        'cancelButtonText' => 'Close',
-        'timer' =>  10000,
-        'timerProgressBar' => true,
-        'buttonsStyling' => false,
-        'customClass' => [
-            'cancelButton' => 'btn btn-primary btn-block',
-        ],
-    ]);
-}
+use Illuminate\Support\Facades\Storage;
 
 function setToastrSettings($type='error', $message=null, $options=[])
 {
@@ -37,18 +15,18 @@ function setToastrSettings($type='error', $message=null, $options=[])
     ];
 }
 
-function getFirstWord($str)
+function getFirstWord($str="")
 {
-    if (is_null($str) OR empty($str)) {
-        return "Empty";
+    if (!empty($str)) {
+      $str = explode(" ", $str);
+
+      return $str[0];
     }
 
-    $str = explode(" ", $str);
-
-    return $str[0];
+    return '';
 }
 
-//  Set Datatable th html attributes like (class, width, style)
+//  Set Datatable <th> html attributes like (class, width, style)
 function setAttributes($keys)
 {
     $allowed_attr = ['class', 'style', 'width'];
