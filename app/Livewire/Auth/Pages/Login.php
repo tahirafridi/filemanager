@@ -25,6 +25,8 @@ class Login extends Component
 
     public function login()
     {
+        $this->validate();
+        
         try {
             $auth = Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember);
             
