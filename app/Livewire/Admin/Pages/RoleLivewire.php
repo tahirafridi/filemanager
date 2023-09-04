@@ -5,17 +5,16 @@ namespace App\Livewire\Admin\Pages;
 use Exception;
 use Throwable;
 use Livewire\Component;
+use Livewire\Attributes\Rule;
 use Spatie\Permission\Models\Role;
 use App\Livewire\Traits\WithDataTable;
 use Spatie\Permission\Models\Permission;
 
 class RoleLivewire extends Component
 {
-    public $dbModel;
-    public $model;
-    public $label;
+    public $dbModel, $model, $label, $permissions;
+    #[Rule('required')] 
     public $name;
-    public $permissions;
     public $selectedPermissions = [];
     public $columns = [
         [
@@ -44,10 +43,6 @@ class RoleLivewire extends Component
             'sort'      => false,
             'search'    => false,
         ],
-    ];
-
-    protected $rules = [
-        'name' => 'required',
     ];
 
     public function mount()
@@ -89,14 +84,14 @@ class RoleLivewire extends Component
         }
     }
 
-    public function edit($id)
+    public function edit(Role $role)
     {
         try {
             $this->authorize('role_edit');
 
             $this->reset('name', 'selectedPermissions');
 
-            $this->model = $this->dbModel::findOrFail($id);
+            $this->model = $role;
 
             $this->selectedPermissions = $this->model->permissions->pluck('id')->toArray();
             

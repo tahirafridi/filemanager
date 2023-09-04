@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ShareApiController extends Controller
 {
-    private $signedMinutes = 1;
+    private $signedMinutes = 10;
 
     public function store(Request $request)
     {

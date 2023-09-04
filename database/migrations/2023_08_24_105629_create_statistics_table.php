@@ -17,7 +17,6 @@ return new class extends Migration
             $table->bigInteger('signed_minutes');
             $table->text('signed_url');
             $table->string('ip', 255)->nullable;
-            $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
         });
     }

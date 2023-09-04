@@ -6,15 +6,16 @@ use Exception;
 use Throwable;
 use App\Models\Folder;
 use Livewire\Component;
+use Livewire\Attributes\Rule;
 use App\Livewire\Traits\WithDataTable;
 
 class FolderLivewire extends Component
 {
     use WithDataTable;
     
-    public $dbModel;
-    public $model;
-    public $label;
+    public $dbModel, $model, $label;
+
+    #[Rule('required')] 
     public $name;
     public $columns = [
         [
@@ -43,10 +44,6 @@ class FolderLivewire extends Component
             'sort'      => false,
             'search'    => false,
         ],
-    ];
-
-    protected $rules = [
-        'name' => 'required',
     ];
 
     public function mount()
@@ -87,14 +84,14 @@ class FolderLivewire extends Component
         }
     }
 
-    public function edit($id)
+    public function edit(Folder $folder)
     {
         try {
             $this->authorize('folder_edit');
 
             $this->reset('name');
 
-            $this->model = $this->dbModel::findOrFail($id);
+            $this->model = $folder;
             
             $this->name = $this->model->name;
 
@@ -120,12 +117,12 @@ class FolderLivewire extends Component
         }
     }
 
-    public function delete($id)
+    public function delete(Folder $folder)
     {
         try {
             $this->authorize('folder_delete');
 
-            $this->model = $this->dbModel::findOrFail($id);
+            $this->model = $folder;
 
             $this->dispatch('showDeleteConfirmationModal');
         } catch (Throwable $th) {
@@ -137,6 +134,10 @@ class FolderLivewire extends Component
     {
         try {
             $this->authorize('folder_delete');
+
+            foreach ($this->model->files as $file) {
+                $file->delete();
+            }
 
             $this->model->delete();
             $this->model = null;

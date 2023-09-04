@@ -97,14 +97,14 @@ class FileLivewire extends Component
         $this->shareUrl = null;
     }
 
-    public function edit($id)
+    public function edit(File $file)
     {
         try {
             $this->authorize('file_edit');
     
             $this->reset('name', 'folder_id');
 
-            $this->model = $this->dbModel::findOrFail($id);
+            $this->model = $file;
             
             $this->name = $this->model->name;
             $this->folder_id = $this->model->folder_id;
@@ -131,12 +131,12 @@ class FileLivewire extends Component
         }
     }
     
-    public function showShareForm($id)
+    public function showShareForm(File $file)
     {
         try {
             $this->authorize('file_share');
     
-            $this->model = $this->dbModel::findOrFail($id);
+            $this->model = $file;
             $this->name = $this->model->name;
 
             $this->share();
@@ -147,12 +147,12 @@ class FileLivewire extends Component
         }
     }
 
-    public function delete($id)
+    public function delete(File $file)
     {
         try {
             $this->authorize('file_delete');
     
-            $this->model = $this->dbModel::findOrFail($id);
+            $this->model = $file;
 
             $this->dispatch('showDeleteConfirmationModal');
         } catch (Throwable $th) {

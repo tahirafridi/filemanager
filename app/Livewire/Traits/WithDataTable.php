@@ -4,7 +4,6 @@ namespace App\Livewire\Traits;
 
 use Livewire\WithPagination;
 
-
 trait WithDataTable
 {
     use WithPagination;

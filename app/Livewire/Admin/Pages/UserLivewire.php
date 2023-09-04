@@ -7,11 +7,12 @@ use Throwable;
 use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use App\Livewire\Traits\WithDataTable;
 use App\Notifications\NewUserNotification;
 use Illuminate\Support\Facades\Notification;
-use Spatie\Permission\Models\Role;
 
 class UserLivewire extends Component
 {
@@ -93,7 +94,7 @@ class UserLivewire extends Component
         try {
             $this->authorize('user_create');
 
-            $this->reset('name', 'email', 'role_id', 'status');
+            $this->reset('name', 'email', 'status', 'role');
 
             $this->dispatch('showAddModal');
         } catch (Throwable $th) {
@@ -103,6 +104,8 @@ class UserLivewire extends Component
 
     public function store()
     {
+        DB::beginTransaction();
+        
         try {
             $this->authorize('user_create');
     
@@ -122,24 +125,28 @@ class UserLivewire extends Component
 
             $this->dispatch('closeAddModal');
             $this->dispatch('toastr', setToastrSettings('success', "Recrod successfully created!"));
+
+            DB::commit();
         } catch (\Throwable $th) {
+            DB::rollBack();
+
             $this->dispatch('toastr', setToastrSettings('error', $th->getMessage()));
         }
     }
 
-    public function edit($id)
+    public function edit(User $user)
     {
         try {
             $this->authorize('user_edit');
     
-            $this->reset('name', 'email', 'role', 'status');
+            $this->reset('name', 'email', 'status', 'role');
 
-            $this->model = $this->dbModel::findOrFail($id);
+            $this->model = $user;
             
             $this->name = $this->model->name;
             $this->email = $this->model->email;
             $this->status = $this->model->status;
-            $this->role = $this->model->roles()->first()->name;
+            $this->role = $this->model->roles()->first()->name ?? null;
 
             $this->dispatch('showEditModal');
         } catch (Throwable $th) {
@@ -149,6 +156,8 @@ class UserLivewire extends Component
 
     public function update()
     {
+        DB::beginTransaction();
+
         try {
             $this->authorize('user_edit');
     
@@ -166,17 +175,21 @@ class UserLivewire extends Component
 
             $this->dispatch('closeEditModal');
             $this->dispatch('toastr', setToastrSettings('success', "Recrod successfully updated!"));
+
+            DB::commit();
         } catch (\Throwable $th) {
+            DB::rollBack();
+            
             $this->dispatch('toastr', setToastrSettings('error', $th->getMessage()));
         }
     }
 
-    public function delete($id)
+    public function delete(User $user)
     {
         try {
             $this->authorize('user_delete');
     
-            $this->model = $this->dbModel::findOrFail($id);
+            $this->model = $user;
 
             if (isset($this->model->email, $this->model->name) AND ($this->model->id == auth()->user()->id)) {
                 throw new Exception("Sorry! You can not delete your own account.");

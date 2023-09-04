@@ -16,7 +16,6 @@ return new class extends Migration
             $table->bigInteger('folder_id');
             $table->string('name', 255);
             $table->string('secret', 255);
-            $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
         });
     }
