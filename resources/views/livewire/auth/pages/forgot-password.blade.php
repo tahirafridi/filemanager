@@ -1,6 +1,6 @@
 <div class="card-body">
     <p class="login-box-msg">{{ __('You forgot your password? Here you can easily retrieve a new password.') }}</p>
-    <form wire:submit="generateNewPassword">
+    <form wire:submit="generatePasswordResetLink">
         <div class="input-group mb-3">
             <input wire:model="email" type="email" class="form-control" placeholder="{{ __('Email') }}" autocomplete="email" autofocus required>
             <div class="input-group-append">
@@ -10,6 +10,7 @@
             </div>
         </div>
         @error('email') <p><small class="text-danger">{{ $message }}</small></p> @enderror
+
         <div class="row">
             <div class="col-12">
                 <button type="submit" class="btn btn-primary btn-block">{{ __('Request new password') }}</button>

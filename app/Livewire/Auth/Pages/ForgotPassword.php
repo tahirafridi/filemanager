@@ -15,10 +15,12 @@ use App\Notifications\SendPasswordResetNotification;
 class ForgotPassword extends Component
 {
     #[Rule('required|email')] 
-    public $email = null;
+    public $email;
 
-    public function generateNewPassword()
+    public function generatePasswordResetLink()
     {
+        DB::beginTransaction();
+
         try {
             $user = User::where(['email' => $this->email])->first();
 
@@ -43,7 +45,11 @@ class ForgotPassword extends Component
             $this->reset('email');
 
             $this->dispatch('toastr', setToastrSettings('success', "We've sent you password reset link, please check your email."));
+
+            DB::commit();
         } catch (\Throwable $th) {
+            DB::rollBack();
+            
             $this->dispatch('toastr', setToastrSettings('error', $th->getMessage()));
         }
     }
