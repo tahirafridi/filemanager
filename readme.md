@@ -26,14 +26,49 @@ for Web Artisans.
 
 You can install TK Filemanger easily by following the below simple steps;
 
+Navigate to your working/project directory
 ```sh
-cd /home/username/public_html or cd /home/username/wwww 
-git clone https://github.com/tahirafridi/filemanager.git .
-mv .env.sample .env
-nano .env
-composer update
-php artisan migrate --seed or php artisan migrate:refresh --seed
+cd /home/username/public_html
+OR 
+cd  /home/username/wwww
 ```
+
+Clone the project from GitHub using the following command, notice the period (.) in the end, it means the project will be cloned in the current directory without creating a project directory again.
+```sh git  
+clone https://github.com/tahirafridi/filemanager.git .
+```
+
+Rename .env.sample file to .env
+```sh
+mv .env.sample .env
+```
+
+Edit .env file using nano command and update the following details;
+```sh
+nano .env
+```
+Change APP_URL to your project base URL.
+Update the database details.
+
+Run composer update
+```sh
+composer update
+```
+
+Generate APP_KEY by using below command;
+```sh
+php artisan key:generate
+```
+
+Run migration command to generate database tables and seed data
+```sh
+php artisan migrate --seed
+```
+
+Go to your project URL for example http://filemanager.test/login
+Use below credentials to login
+Email: admin@example.com
+Password: 123123
 
 ## License
 
