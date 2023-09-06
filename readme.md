@@ -35,7 +35,7 @@ cd  /home/username/wwww
 
 Clone the project from GitHub using the following command, notice the period (.) in the end, it means the project will be cloned in the current directory without creating a project directory again.
 ```sh git  
-clone https://github.com/tahirafridi/filemanager.git .
+git clone https://github.com/tahirafridi/filemanager.git .
 ```
 
 Rename .env.sample file to .env
