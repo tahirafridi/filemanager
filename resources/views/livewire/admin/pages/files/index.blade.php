@@ -83,7 +83,7 @@
                                             <td>{{ $row->id }}</td>
                                             <td>{{ $row->folder->name ?? '' }}</td>
                                             <td>{{ $row->name }}</td>
-                                            <td><i class="fas fa-file"></i> {{ niceFileSize($row->getMedia('apk-files')[0]->size ?? 0) }}</td>
+                                            <td><i class="fas fa-file"></i> {{ niceFileSize($row->getMedia('files')[0]->size ?? 0) }}</td>
                                             <td class="text-center">{{ $row->statistics_count }}</td>
                                             <td>
                                                 <a href="javascript:void(0);" class="mr-1" onclick="copyText($(this), 'copyText{{ $row->id }}')">Copy</a>

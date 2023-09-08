@@ -15,17 +15,19 @@ class RemoteUploadCommand extends Command
 
     public function handle()
     {
-        $urls = RemoteUpload::all();
+        $urls = RemoteUpload::where('status', 'In-Progress')->get();
 
         foreach ($urls as $url) {
             try {
+                $url->update(['status' => 'Uploading']);
+                
                 $row = File::create([
                     'folder_id' => $url->folder_id,
                     'name'      => uniqid(),
                     'secret'    => Str::random(60) . $url->folder_id . uniqid(),
                 ]);
 
-                $file = $row->addMediaFromUrl($url->url)->toMediaCollection('apk-files');
+                $file = $row->addMediaFromUrl($url->url)->toMediaCollection('files');
                 
                 $row->update(['name' => $file->name]);
 

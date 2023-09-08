@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('upload:remote')->everyMinute();
+        $schedule->command('upload:remote')->everyMinute()->withoutOverlapping();
     }
 
     protected function commands()

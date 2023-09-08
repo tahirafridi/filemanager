@@ -16,7 +16,7 @@ Route::get('/download/{secret}', function (Request $request, $secret) {
     
     $row = File::where('secret', $secret)->first();
 
-    $mediaItem = $row->getMedia('apk-files')[0];
+    $mediaItem = $row->getMedia('files')[0];
 
     return response()->download($mediaItem->getPath(), $row->name);
 })->name('download');

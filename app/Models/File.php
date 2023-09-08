@@ -20,7 +20,7 @@ class File extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('apk-files');
+        $this->addMediaCollection('files');
     }
 
     public static function search($columns, $search)

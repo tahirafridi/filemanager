@@ -50,7 +50,7 @@ class UploadLivewire extends Component
                 ]);
 
                 if ($file->isValid()) {
-                    $row->copyMedia($file->path())->toMediaCollection('apk-files');
+                    $row->copyMedia($file->path())->toMediaCollection('files');
                 }
             }
             

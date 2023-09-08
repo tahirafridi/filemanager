@@ -178,7 +178,10 @@ class FileLivewire extends Component
     {
         $this->authorize('file_access');
         
-        $rows = $this->dbModel::search($this->columns, $this->search)->with('folder:id,name')->withCount('statistics');
+        $rows = $this->dbModel::search($this->columns, $this->search)
+            ->with('folder:id,name')
+            ->withCount('statistics')
+            ->whereHas('media');
 
         if ($this->folder) {
             $rows = $rows->where('folder_id', $this->folder->id);
