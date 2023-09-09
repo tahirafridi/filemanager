@@ -78,7 +78,7 @@ class RoleLivewire extends Component
             $row->syncPermissions($this->selectedPermissions);
 
             $this->dispatch('closeAddModal');
-            $this->dispatch('toastr', setToastrSettings('success', "Recrod successfully created!"));
+            $this->dispatch('toastr', setToastrSettings('success', "Record successfully created!"));
         } catch (\Throwable $th) {
             $this->dispatch('toastr', setToastrSettings('error', $th->getMessage()));
         }
@@ -117,7 +117,7 @@ class RoleLivewire extends Component
             $this->model->syncPermissions($this->selectedPermissions);
 
             $this->dispatch('closeEditModal');
-            $this->dispatch('toastr', setToastrSettings('success', "Recrod successfully updated!"));
+            $this->dispatch('toastr', setToastrSettings('success', "Record successfully updated!"));
         } catch (\Throwable $th) {
             $this->dispatch('toastr', setToastrSettings('error', $th->getMessage()));
         }

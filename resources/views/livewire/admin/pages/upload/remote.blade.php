@@ -20,6 +20,11 @@
                 <div class="card-header">
                     <h3 class="card-title">{{ $label }}</h3>
                     <div class="card-tools">
+                        @can('file_folder_upload')
+                            <a href="{{ route('admin.folder-upload.index') }}" class="btn btn-success btn-xs">
+                                <i class="fas fa-upload"></i> {{ __('Folder Upload') }}
+                            </a>
+                        @endcan
                         @can('file_upload')
                             <a href="{{ route('admin.upload.index', $folder->id ?? null) }}" class="btn btn-secondary btn-xs">
                                 <i class="fas fa-file-upload"></i> {{ __('File(s) Upload') }}

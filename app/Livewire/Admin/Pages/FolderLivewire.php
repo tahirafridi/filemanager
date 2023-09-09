@@ -78,7 +78,7 @@ class FolderLivewire extends Component
             $this->resetPage();
 
             $this->dispatch('closeAddModal');
-            $this->dispatch('toastr', setToastrSettings('success', "Recrod successfully created!"));
+            $this->dispatch('toastr', setToastrSettings('success', "Record successfully created!"));
         } catch (\Throwable $th) {
             $this->dispatch('toastr', setToastrSettings('error', $th->getMessage()));
         }
@@ -111,7 +111,7 @@ class FolderLivewire extends Component
             $this->model->update($validatedData);
 
             $this->dispatch('closeEditModal');
-            $this->dispatch('toastr', setToastrSettings('success', "Recrod successfully updated!"));
+            $this->dispatch('toastr', setToastrSettings('success', "Record successfully updated!"));
         } catch (\Throwable $th) {
             $this->dispatch('toastr', setToastrSettings('error', $th->getMessage()));
         }
@@ -152,7 +152,7 @@ class FolderLivewire extends Component
     {
         $this->authorize('folder_access');
         
-        $rows = $this->dbModel::search($this->columns, $this->search)->orderBy($this->order_by, $this->direction)->paginate($this->per_page);
+        $rows = $this->dbModel::search($this->columns, $this->search)->withCount('files')->orderBy($this->order_by, $this->direction)->paginate($this->per_page);
 
         return view('livewire.admin.pages.folders.index', compact('rows'))->layout('components.layouts.admin.app');
     }

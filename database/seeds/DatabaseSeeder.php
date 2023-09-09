@@ -40,6 +40,10 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'logo',
                 'value'=> null,
+            ],
+            [
+                'name' => 'local_folder_path',
+                'value'=> null,
             ]
         ];
 
@@ -61,6 +65,7 @@ class DatabaseSeeder extends Seeder
             'file_access',
             'file_upload',
             'file_remote_upload',
+            'file_folder_upload',
             'file_edit',
             'file_delete',
             'file_share',

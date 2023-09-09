@@ -35,6 +35,7 @@ Route::namespace('\App\Livewire\Admin\Pages')->prefix('admin')->name('admin.')->
     Route::get('/', DashboardLivewire::class)->name('index');
     Route::get('/folders', FolderLivewire::class)->name('folders.index');
     Route::get('/files/{file_id}/statistics', StatisticLivewire::class)->name('statistics.index');
+    Route::get('/files/folder-upload', FolderUploadLivewire::class)->name('folder-upload.index');
     Route::get('/files/upload/{folder_id?}', UploadLivewire::class)->name('upload.index');
     Route::get('/files/remote-upload/{folder_id?}', RemoteUploadLivewire::class)->name('remote-upload.index');
     Route::get('/files/{folder_id?}', FileLivewire::class)->name('files.index');

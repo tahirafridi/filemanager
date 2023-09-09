@@ -71,6 +71,7 @@
                                             <td>{{ $row->id }}</td>
                                             <td>
                                                 <a wire:navigate href="{{ route('admin.files.index', $row->id) }}">{{ $row->name }}</a>
+                                                <span>has {{ $row->files_count }} files</span>
                                             </td>
                                             <td class="text-center">
                                                 <div class="btn-group">

@@ -34,6 +34,11 @@
                                 <i class="fas fa-cloud-upload-alt"></i> {{ __('Remote Upload') }}
                             </a>
                         @endcan
+                        @can('file_folder_upload')
+                            <a href="{{ route('admin.folder-upload.index') }}" class="btn btn-success btn-xs">
+                                <i class="fas fa-upload"></i> {{ __('Folder Upload') }}
+                            </a>
+                        @endcan
                         @can('file_upload')
                             <a href="{{ route('admin.upload.index', $folder->id ?? null) }}" class="btn btn-secondary btn-xs">
                                 <i class="fas fa-file-upload"></i> {{ __('File(s) Upload') }}

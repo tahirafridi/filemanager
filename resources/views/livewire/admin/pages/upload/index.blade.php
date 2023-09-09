@@ -25,6 +25,11 @@
                                 <i class="fas fa-cloud-upload-alt"></i> {{ __('Remote Upload') }}
                             </a>
                         @endcan
+                        @can('file_folder_upload')
+                            <a href="{{ route('admin.folder-upload.index') }}" class="btn btn-success btn-xs">
+                                <i class="fas fa-upload"></i> {{ __('Folder Upload') }}
+                            </a>
+                        @endcan
                     </div>
                 </div>
                 <div class="card-body">

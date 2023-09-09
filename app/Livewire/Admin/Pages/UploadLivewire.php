@@ -56,7 +56,7 @@ class UploadLivewire extends Component
             
             $this->reset('files');
             $this->dispatch('FilePondReset');
-            $this->dispatch('toastr', setToastrSettings('success', "Recrod successfully created!"));
+            $this->dispatch('toastr', setToastrSettings('success', "Record successfully created!"));
         } catch (\Throwable $th) {
             $this->dispatch('toastr', setToastrSettings('error', $th->getMessage()));
         }

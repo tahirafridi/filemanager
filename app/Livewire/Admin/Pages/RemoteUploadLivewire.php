@@ -82,7 +82,7 @@ class RemoteUploadLivewire extends Component
             }
             
             $this->reset('urls');
-            $this->dispatch('toastr', setToastrSettings('success', "Recrod successfully created!"));
+            $this->dispatch('toastr', setToastrSettings('success', "Record successfully created!"));
         } catch (\Throwable $th) {
             $this->dispatch('toastr', setToastrSettings('error', $th->getMessage()));
         }

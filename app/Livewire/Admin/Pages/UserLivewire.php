@@ -124,7 +124,7 @@ class UserLivewire extends Component
             $this->resetPage();
 
             $this->dispatch('closeAddModal');
-            $this->dispatch('toastr', setToastrSettings('success', "Recrod successfully created!"));
+            $this->dispatch('toastr', setToastrSettings('success', "Record successfully created!"));
 
             DB::commit();
         } catch (\Throwable $th) {
@@ -174,7 +174,7 @@ class UserLivewire extends Component
             $this->model->syncRoles($this->role);
 
             $this->dispatch('closeEditModal');
-            $this->dispatch('toastr', setToastrSettings('success', "Recrod successfully updated!"));
+            $this->dispatch('toastr', setToastrSettings('success', "Record successfully updated!"));
 
             DB::commit();
         } catch (\Throwable $th) {

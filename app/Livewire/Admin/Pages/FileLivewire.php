@@ -125,7 +125,7 @@ class FileLivewire extends Component
             $this->model->update($validatedData);
 
             $this->dispatch('closeEditModal');
-            $this->dispatch('toastr', setToastrSettings('success', "Recrod successfully updated!"));
+            $this->dispatch('toastr', setToastrSettings('success', "Record successfully updated!"));
         } catch (\Throwable $th) {
             $this->dispatch('toastr', setToastrSettings('error', $th->getMessage()));
         }
