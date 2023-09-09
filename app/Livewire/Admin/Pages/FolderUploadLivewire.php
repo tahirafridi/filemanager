@@ -21,7 +21,7 @@ class FolderUploadLivewire extends Component
     {
         $this->label    = "Local Folder Upload";
         $this->folders  = Folder::all();
-        $this->setting  = Setting::where('name', 'local_folder_path')->whereNotNull('value')->first();
+        $this->setting  = Setting::where('name', 'local_folder_path')->first();
 
         if ($this->setting) {
             $this->folder_path = $this->setting->value;
@@ -35,12 +35,12 @@ class FolderUploadLivewire extends Component
 
             $this->selectedFiles = [];
             $this->localFiles = [];
+
+            $this->setting->update(['value' => $this->folder_path]);
             
             if (empty($this->folder_path)) {
                 throw new Exception("Folder path should not be empty.");
             }
-
-            $this->setting->update(['value' => $this->folder_path]);
 
             foreach (File::allFiles($this->folder_path) as $file) {
                 $this->localFiles[] = [
@@ -79,6 +79,8 @@ class FolderUploadLivewire extends Component
                     return $value['name'] != $file->name;
                 });
             }
+
+            $this->selectedFiles = [];
 
             $this->dispatch('toastr', setToastrSettings('success', "Selected files successfully moved to system."));
         } catch (\Throwable $th) {

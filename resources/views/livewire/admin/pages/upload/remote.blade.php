@@ -21,7 +21,7 @@
                     <h3 class="card-title">{{ $label }}</h3>
                     <div class="card-tools">
                         @can('file_folder_upload')
-                            <a href="{{ route('admin.folder-upload.index') }}" class="btn btn-success btn-xs">
+                            <a wire:navigate href="{{ route('admin.folder-upload.index') }}" class="btn btn-success btn-xs">
                                 <i class="fas fa-upload"></i> {{ __('Folder Upload') }}
                             </a>
                         @endcan

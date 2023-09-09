@@ -30,12 +30,12 @@
                     </h3>
                     <div class="card-tools">
                         @can('file_remote_upload')
-                            <a href="{{ route('admin.remote-upload.index', $folder->id ?? null) }}" class="btn btn-primary btn-xs">
+                            <a wire:navigate href="{{ route('admin.remote-upload.index', $folder->id ?? null) }}" class="btn btn-primary btn-xs">
                                 <i class="fas fa-cloud-upload-alt"></i> {{ __('Remote Upload') }}
                             </a>
                         @endcan
                         @can('file_folder_upload')
-                            <a href="{{ route('admin.folder-upload.index') }}" class="btn btn-success btn-xs">
+                            <a wire:navigate href="{{ route('admin.folder-upload.index') }}" class="btn btn-success btn-xs">
                                 <i class="fas fa-upload"></i> {{ __('Folder Upload') }}
                             </a>
                         @endcan
