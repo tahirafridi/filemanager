@@ -57,7 +57,7 @@ class FolderLivewire extends Component
         try {
             $this->authorize('folder_create');
 
-            $this->reset('name', 'folder_id');
+            $this->reset('name');
 
             $this->dispatch('setFocus', '#add_modal #name');
             $this->dispatch('showAddModal');

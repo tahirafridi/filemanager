@@ -1,5 +1,5 @@
 <!--Start: Edit Modal -->
-<div class="modal fade" id="edit_modal" tabindex="-1">
+<div wire:ignore class="modal fade" id="edit_modal" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-dark px-3 py-2">
